@@ -1,0 +1,44 @@
+type CrowdArgs = record {
+     name:text;
+     begin_time:nat64;
+     end_time:nat64;
+     owner:text;
+     min_ammount:nat64;
+     total_ammount:nat64;
+     funded_total_ammount:nat64;
+     status:nat8;
+};
+type CrowdResult = variant {
+    Ok: nat8;
+    Err: text;
+};
+type Funder = record{
+      funder:text;
+      last_fund_time:nat64;
+      fund_total_ammount:nat64;
+      funder_records:vec FunderRecord;
+};
+type FunderRecord = record{
+        fund_ammount:nat64;
+        fund_time:nat64;
+};
+type Memo = nat64;
+
+type TransferResult = variant {
+    Ok: Memo;
+    Err: text;
+};
+type Tokens = record{
+    e8s:nat64;
+
+};
+
+service :()->{
+    "greet": (text) -> (text) query;
+    "create_crowd":(CrowdArgs) -> (CrowdResult);
+    "get_crowd":()->(CrowdArgs) query;
+    "get_funder":(text)-> (opt Funder) ;
+    "token_transfer": () -> (text);
+    "fund": (nat64) -> (nat8);
+    "get_funders":()->(vec Funder);
+}

@@ -1,0 +1,36 @@
+{
+  "canisters": {
+    "fund": {
+      "candid": "src/fund/fund.did",
+      "package": "fund",
+      "type": "rust"
+    },
+    "fund_assets": {
+      "dependencies": [
+        "fund"
+      ],
+      "frontend": {
+        "entrypoint": "src/fund_assets/src/index.html"
+      },
+      "source": [
+        "src/fund_assets/assets",
+        "dist/fund_assets/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "dfx": "0.10.0",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
+}
